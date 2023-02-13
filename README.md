@@ -2,3 +2,4 @@
 - Nathan PAULIN
 - Alexis GRIDEL
 - Yu TIAN
+- Maxime CARLIER
