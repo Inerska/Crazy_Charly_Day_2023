@@ -94,8 +94,18 @@ class userLogic extends Controller
        ]);
     }
 
-    public function addProductPanier(Request $request){
+    public function addProductPanier(Request $request, $id){
+        //validate data
+        $validator = Validator::make($request->all(), [
+            'quantity' => 'required|integer|max:255'
+        ]);
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }else {
+            $produit =
 
+            //add data to panier
+        }
     }
 
 }
