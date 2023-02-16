@@ -30,7 +30,7 @@ Route::get('/panier', function () {
 });
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Welcome');
+    return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
