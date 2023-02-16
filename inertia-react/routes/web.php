@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\forum\adminLogic;
+use App\Http\Controllers\forum\userLogic;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\usersController;
 use App\Http\Controllers\usersModActions;
@@ -36,9 +37,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/panier', function () {
-    return Inertia::render('Panier');
-});
+Route::get('/panier', [userLogic::class, 'mainProducPage']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

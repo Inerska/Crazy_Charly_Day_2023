@@ -23,21 +23,6 @@ use Inertia\Inertia;
 class adminLogic extends Controller
 {
 
-
-    /**
-     * Panel's admin-panel front page
-     *
-     * @return \Inertia\Response returns a view
-     */
-    public function mainAdminDashBoard()
-    {
-
-        return Inertia::render('admindashboard', [
-            //'userCount' => $userCount
-        ]);
-
-    }
-
     //tools
     /**
      * Calculates the time elapsed between a date and the current one
@@ -85,7 +70,11 @@ class adminLogic extends Controller
         return DB::table('users')->where('id', $id)->first();
     }
 
-
+    /**
+     * Panel's admin-panel front page
+     *
+     * @return \Inertia\Response returns a view
+     */
     public function getAdminDashboard(){
         $userCount = User::count();
         $commandeCount = commande::count();
