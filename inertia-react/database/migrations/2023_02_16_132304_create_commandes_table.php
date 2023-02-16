@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('commandes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('contenu_id')->constrained();
             $table->foreignId('ville_id')->constrained();
             $table->text('qr_code')->nullable(false);
         });

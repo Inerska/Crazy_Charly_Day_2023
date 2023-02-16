@@ -12,9 +12,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('panier', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('produit_id');
             $table->foreignId('user_id');
-            $table->primary(['user_id', 'produit_id']);
             $table->integer("nb_produit");
         });
     }
