@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\forum;
+namespace App\Http\Controllers\main;
 
 use App\Http\Controllers\Controller;
 use App\Models\produit;

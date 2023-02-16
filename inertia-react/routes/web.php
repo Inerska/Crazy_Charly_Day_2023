@@ -1,11 +1,10 @@
 <?php
 
-use App\Http\Controllers\forum\adminLogic;
-use App\Http\Controllers\forum\userLogic;
+use App\Http\Controllers\main\adminLogic;
+use App\Http\Controllers\main\userLogic;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\usersController;
 use App\Http\Controllers\usersModActions;
-use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -41,7 +40,9 @@ Route::get('/panier', function () {
     return Inertia::render('Panier');
 });
 
-Route::get('/dashboard', [userLogic::class, 'mainProducPage'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard/{id}',
+    [userLogic::class, 'mainProducPage'])
+    ->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -53,7 +54,7 @@ Route::get('/products', function () {
     return Inertia::render('Products');
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => ['AdminAuthenticate']], function(){
+Route::group(['prefix' => 'admin', 'middleware' => ['AdminAuthenticate']], function () {
 
     //Dashboard Admin
     Route::get('/', [adminLogic::class, 'getAdminDashboard'])->name('AdminDashboard');
@@ -76,4 +77,4 @@ Route::group(['prefix' => 'admin', 'middleware' => ['AdminAuthenticate']], funct
 
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
