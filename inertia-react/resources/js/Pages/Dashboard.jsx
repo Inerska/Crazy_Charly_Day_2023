@@ -1,6 +1,6 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import {Head} from '@inertiajs/react';
-import {Button, Card, Grid, Row, Text} from "@nextui-org/react";
+import {Button, Card, Grid, Pagination, Row, Text} from "@nextui-org/react";
 import {useState} from "react";
 
 export default function Dashboard(props) {
