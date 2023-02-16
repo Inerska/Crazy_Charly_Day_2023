@@ -25,7 +25,7 @@ export default function Authenticated({ auth, header, children }) {
                                     Dashboard
                                 </NavLink>
                                 {auth.user.admin !==0 ?
-                                    <NavLink href="/admin/" class="text-red-500">
+                                    <NavLink href={route('AdminDashboard')} class="text-red-500" active={route().current('AdminDashboard')}>
                                         <span class="text-red-500">Housekeeping</span>
                                     </NavLink>
                                     : null
