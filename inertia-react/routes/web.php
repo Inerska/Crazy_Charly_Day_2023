@@ -6,6 +6,7 @@ use App\Http\Controllers\usersController;
 use App\Http\Controllers\usersModActions;
 use App\Models\User;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -21,6 +22,12 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
+
+    // if authentified, redirect to dashboard
+    if (Auth::check()) {
+        return redirect()->route('dashboard');
+    }
+
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
