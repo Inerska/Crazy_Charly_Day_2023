@@ -1,10 +1,9 @@
-import {Link, Head} from '@inertiajs/react';
+import {Head, Link} from '@inertiajs/react';
 import {Layout} from "@/Layouts/IndexLayout";
 import CourtCircuitLogo from "../Components/CourtCirtcuitLogo";
 import {useState} from "react";
 import {Button, Card, Navbar, Text} from "@nextui-org/react";
 import {VariantsSelectorWrapper} from "@/Components/VariantsSelectorWrapper";
-import {ThemeProvider} from "next-themes";
 
 export default function Welcome(props) {
 
@@ -17,7 +16,7 @@ export default function Welcome(props) {
         <Layout>
             <Navbar isBordered variant={variant}>
                 <Navbar.Brand>
-                    <CourtCircuitLogo />
+                    <CourtCircuitLogo/>
                     <Text b color="inherit" hideIn="xs">
                         Court Circuit
                     </Text>
@@ -29,14 +28,23 @@ export default function Welcome(props) {
                     <Navbar.Link href="#">Company</Navbar.Link>
                 </Navbar.Content>
                 <Navbar.Content>
-                    <Navbar.Link color="inherit" href="#">
-                        Login
-                    </Navbar.Link>
-                    <Navbar.Item>
-                        <Button auto flat as={Link} href="#">
-                            Sign Up
-                        </Button>
-                    </Navbar.Item>
+                    {props.auth.user ? (
+                        <>
+                            <Navbar.Link href="#">{props.auth.user.name}</Navbar.Link>
+                            <Navbar.Link href={route('panier')}>Panier</Navbar.Link>
+                        </>) : (<>
+                            <Navbar.Link color="inherit" href={route('login')}>
+                                Login
+                            </Navbar.Link>
+                        <Link href={route('register')} as="a">
+                            <Button color="primary" auto>
+                                Register
+                            </Button>
+                        </Link>
+                        </>)
+
+                    }
+
                 </Navbar.Content>
             </Navbar>
             <VariantsSelectorWrapper>
