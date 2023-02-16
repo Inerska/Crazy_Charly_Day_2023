@@ -6,6 +6,7 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/react';
 import {Avatar, User} from "@nextui-org/react";
 import CourtCircuitLogo from "@/Components/CourtCirtcuitLogo";
+import ProductsSearchBar from "@/Components/ProductsSearchBar";
 
 export default function Authenticated({ auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
@@ -24,7 +25,7 @@ export default function Authenticated({ auth, header, children }) {
 
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink href={route('dashboard')} active={route().current('dashboard')}>
-                                    Dashboard
+                                    Catalogue
                                 </NavLink>
                                 {auth.user.admin !==0 ?
                                     <NavLink href={route('AdminDashboard')} class="text-red-500" active={route().current('AdminDashboard')}>
@@ -32,6 +33,8 @@ export default function Authenticated({ auth, header, children }) {
                                     </NavLink>
                                     : null
                             }
+                            <ProductsSearchBar />
+
                             </div>
                         </div>
 

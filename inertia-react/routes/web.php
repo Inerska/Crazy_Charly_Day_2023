@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\main\adminLogic;
 use App\Http\Controllers\main\userLogic;
+use App\Http\Controllers\panier;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\usersController;
 use App\Http\Controllers\usersModActions;
@@ -44,6 +45,7 @@ Route::get('/dashboard/{id?}', [userLogic::class, 'mainProducPage'])->middleware
 Route::get('/product/{id}', [userLogic::class, 'productPage'])->name('productPage');
 Route::post('/add-to-panier/{id}', [userLogic::class, 'addProductPanier'])->name('addToPanier');
 
+Route::get('/allProducts', [userLogic::class, 'getAllProducts'])->name('allProducts');
 
 
 Route::middleware('auth')->group(function () {
@@ -52,8 +54,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => ['AdminAuthenticate']], function () {
+Route::get('/products', function () {
+    return Inertia::render('Products');
+});
 
+Route::get('/panier/', [panier::class, 'getItemsFromPanier']);
+
+Route::group(['prefix' => 'admin', 'middleware' => ['AdminAuthenticate']], function(){
     //Dashboard Admin
     Route::get('/', [adminLogic::class, 'getAdminDashboard'])->name('AdminDashboard');
 

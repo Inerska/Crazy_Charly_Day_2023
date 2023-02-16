@@ -94,6 +94,10 @@ class userLogic extends Controller
        ]);
     }
 
+    public static function getAllProducts(){
+        return produit::all();
+    }
+
     public function addProductPanier(Request $request, $id){
         //validate data
         $validator = Validator::make($request->all(), [
@@ -102,7 +106,9 @@ class userLogic extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator);
         }else {
-            $produit =
+            $produit = produit::findOr($id, function () {
+                return back()->with('status', 'Product not found');
+            });
 
             //add data to panier
         }
