@@ -87,7 +87,7 @@ class userLogic extends Controller
      */
     public function productPage($id, Request $request){
         $product = produit::findOr($id, function () {
-            return back()->with('status', 'Product not found');
+            return back()->with('status', 'ProductPage not found');
         });
        return Inertia::render('ProductPage',[
            'product' => $product
