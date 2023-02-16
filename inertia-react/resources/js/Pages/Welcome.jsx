@@ -4,6 +4,7 @@ import CourtCircuitLogo from "../Components/CourtCirtcuitLogo";
 import {useState} from "react";
 import {Button, Card, Navbar, Text} from "@nextui-org/react";
 import {VariantsSelectorWrapper} from "@/Components/VariantsSelectorWrapper";
+import {ThemeProvider} from "next-themes";
 
 export default function Welcome(props) {
 
