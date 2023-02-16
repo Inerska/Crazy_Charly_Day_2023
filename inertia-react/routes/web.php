@@ -43,7 +43,7 @@ Route::get('/panier', function () {
 
 Route::get('/dashboard/{id?}', [userLogic::class, 'mainProducPage'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/product/{id}', [userLogic::class, 'productPage'])->name('productPage');
-Route::post('/add-to-panier', [userLogic::class, 'addProductPanier'])->name('addToPanier');
+Route::post('/add-to-panier/{id}', [userLogic::class, 'addProductPanier'])->name('addToPanier');
 
 Route::get('/allProducts', [userLogic::class, 'getAllProducts'])->name('allProducts');
 

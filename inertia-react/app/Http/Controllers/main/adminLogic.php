@@ -61,16 +61,6 @@ class adminLogic extends Controller
     }
 
     /**
-     * Gets a user's object based on an id
-     *
-     * @param  string  $id user's id
-     * @return object user's object
-     */
-    public static function getUserById($id){
-        return DB::table('users')->where('id', $id)->first();
-    }
-
-    /**
      * Panel's admin-panel front page
      *
      * @return \Inertia\Response returns a view
