@@ -52,7 +52,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['AdminAuthenticate']], funct
     //Dashboard Admin
     Route::get('/', function () {
         $userCount = User::count();
-        return Inertia::render('admindashboard', [
+        return Inertia::render('AdminDashboard', [
             'userCount' => $userCount
         ]);
     })->name('AdminDashboard');
