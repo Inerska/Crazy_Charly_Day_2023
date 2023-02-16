@@ -4,6 +4,7 @@ import CourtCircuitLogo from "../Components/CourtCirtcuitLogo";
 import {useState} from "react";
 import {Button, Card, Navbar, Text} from "@nextui-org/react";
 import {VariantsSelectorWrapper} from "@/Components/VariantsSelectorWrapper";
+import ProductsSearchBar from "@/Components/ProductsSearchBar";
 
 export default function Welcome(props) {
 
@@ -21,12 +22,22 @@ export default function Welcome(props) {
                         Court Circuit
                     </Text>
                 </Navbar.Brand>
-                <Navbar.Content hideIn="xs">
-                    <Navbar.Link href="#">Features</Navbar.Link>
-                    <Navbar.Link isActive href="#">Customers</Navbar.Link>
-                    <Navbar.Link href="#">Pricing</Navbar.Link>
-                    <Navbar.Link href="#">Company</Navbar.Link>
-                </Navbar.Content>
+                {
+                    !props.auth.user ? (
+                            <Navbar.Content hideIn="xs">
+                                <Navbar.Link href="#">Features</Navbar.Link>
+                                <Navbar.Link isActive href="#">Customers</Navbar.Link>
+                                <Navbar.Link href="#">Pricing</Navbar.Link>
+                                <Navbar.Link href="#">Company</Navbar.Link>
+                            </Navbar.Content>
+                    ) :
+                    (
+                        <Navbar.Content hideIn="xs">
+                            <ProductsSearchBar />
+                        </Navbar.Content>
+                    )
+                }
+
                 <Navbar.Content>
                     {props.auth.user ? (
                         <>
