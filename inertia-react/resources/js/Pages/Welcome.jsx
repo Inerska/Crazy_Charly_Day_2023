@@ -31,7 +31,7 @@ export default function Welcome(props) {
                     {props.auth.user ? (
                         <>
                             <Navbar.Link href="#">{props.auth.user.name}</Navbar.Link>
-                            <Navbar.Link href={route('panier')}>Panier</Navbar.Link>
+                            <Navbar.Link href="/panier">Panier</Navbar.Link>
                         </>) : (<>
                             <Navbar.Link color="inherit" href={route('login')}>
                                 Login

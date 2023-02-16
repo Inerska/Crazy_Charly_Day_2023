@@ -25,8 +25,8 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/test', function () {
-    return Inertia::render('Test');
+Route::get('/panier', function () {
+    return Inertia::render('Panier');
 });
 
 Route::get('/dashboard', function () {
