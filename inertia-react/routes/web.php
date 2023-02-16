@@ -44,6 +44,7 @@ Route::get('/dashboard/{id?}', [userLogic::class, 'mainProducPage'])->middleware
 Route::get('/product/{id}', [userLogic::class, 'productPage'])->name('productPage');
 Route::post('/add-to-panier', [userLogic::class, 'addProductPanier'])->name('addToPanier');
 
+Route::get('/allProducts', [userLogic::class, 'getAllProducts'])->name('allProducts');
 
 
 Route::middleware('auth')->group(function () {

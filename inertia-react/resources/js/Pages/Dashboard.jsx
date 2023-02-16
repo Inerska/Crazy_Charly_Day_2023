@@ -1,5 +1,5 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import {Head} from '@inertiajs/react';
+import {Head, router} from '@inertiajs/react';
 import {Button, Card, Grid, Pagination, Row, Text} from "@nextui-org/react";
 import {useState} from "react";
 
@@ -19,8 +19,8 @@ export default function Dashboard(props) {
                 <Grid.Container gap={2} justify="center">
                     {Object.entries(props.produits).map(([key, value]) => {
                         return (<Grid key={key} xs={12} sm={6} md={4} lg={3} xl={2}>
-                            <a href={`/product/${value.id}`}>
-                                <Card isPressable isHoverable>
+                            <Card isPressable isHoverable>
+                                <a href={`/product/${value.id}`}>
                                     <Card.Body css={{p: 0}}>
                                         <Card.Image
                                             src={`/products/${value.id}.jpg`}
@@ -43,8 +43,8 @@ export default function Dashboard(props) {
                                             </Button>
                                         </Row>
                                     </Card.Footer>
-                                </Card>
-                            </a>
+                                </a>
+                            </Card>
                         </Grid>)
                     })}
                 </Grid.Container>
@@ -53,7 +53,16 @@ export default function Dashboard(props) {
 
         <Pagination total={props.buttons} page={page} onChange={(page) => {
             setPage(page)
-            location.href = `/dashboard/${page}`;
+
+            router.visit(`/dashboard/${page}`,
+
+                {
+                    preserveScroll: true,
+                    only: ['produits'],
+                    preserveState: true,
+                })
+
+
         }}/>
 
     </AuthenticatedLayout>);

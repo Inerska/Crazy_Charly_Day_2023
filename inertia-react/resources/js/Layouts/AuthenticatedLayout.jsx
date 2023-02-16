@@ -6,6 +6,7 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/react';
 import {Avatar, User} from "@nextui-org/react";
 import CourtCircuitLogo from "@/Components/CourtCirtcuitLogo";
+import ProductsSearchBar from "@/Components/ProductsSearchBar";
 
 export default function Authenticated({ auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
@@ -32,6 +33,8 @@ export default function Authenticated({ auth, header, children }) {
                                     </NavLink>
                                     : null
                             }
+                            <ProductsSearchBar />
+
                             </div>
                         </div>
 

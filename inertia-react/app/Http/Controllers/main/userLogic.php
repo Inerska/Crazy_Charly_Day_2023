@@ -94,6 +94,10 @@ class userLogic extends Controller
        ]);
     }
 
+    public static function getAllProducts(){
+        return produit::all();
+    }
+
     public function addProductPanier(Request $request){
 
     }
