@@ -19,7 +19,7 @@ class produit extends Model
     ];
     use HasFactory;
 
-    protected $table='produit';
+    protected $table='produits';
     protected $primaryKey='id';
     public $timestamps=false;
 
