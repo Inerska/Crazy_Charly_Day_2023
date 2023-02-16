@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\main;
 
 use App\Http\Controllers\Controller;
+use App\Models\dansPanier;
+use App\Models\panier;
 use App\Models\produit;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -87,7 +89,7 @@ class userLogic extends Controller
      */
     public function productPage($id, Request $request){
         $product = produit::findOr($id, function () {
-            return back()->with('status', 'ProductPage not found');
+            return back()->with('status', 'Product not found');
         });
        return Inertia::render('ProductPage',[
            'product' => $product
@@ -98,8 +100,49 @@ class userLogic extends Controller
         return produit::all();
     }
 
-    public function addProductPanier(Request $request){
+    public function addProductPanier(Request $request, $id){
+        //validate data
+        $validator = Validator::make($request->all(), [
+            'quantity' => 'required|integer|max:255'
+        ]);
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }else {
+            // if the panier does not exist create it in the database
+            if (panier::where('user_id', $request->user()->id)->doesntExist()) {
+                $panier = new panier();
+                $panier->user_id = $request->user()->id;
+                $panier->save();
+            } else {
+                $panier = panier::where('user_id', $request->user()->id)->first();
+                $produit = produit::find($id);
 
+                // if the product is already in the panier update the quantity both in dansPanier and in panier
+                $contenu = dansPanier::where('panier_id', $panier->id)->where('produit_id', $produit->id)->first();
+                if ($contenu != null) {
+                    $contenu->nb_produit_singulier += $request->input('quantity');
+                    $contenu->save();
+
+                    $panier->nb_produit_total += $request->input('quantity');
+
+                    return back()->with('status', 'Product updated in cart');
+                }
+
+                // if the product is not in the panier add it
+                $contenu = new dansPanier();
+                $contenu->panier_id = $panier->id;
+                $contenu->produit_id = $produit->id;
+                $contenu->nb_produit_singulier = $request->input('quantity');
+                $contenu->save();
+
+                $panier->nb_produit_total += $request->input('quantity');
+                $panier->save();
+
+                return redirect()->route('dashboard')->with('status', 'Product added to cart');
+
+            }
+
+        }
     }
 
 }
