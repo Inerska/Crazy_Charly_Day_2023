@@ -47,6 +47,9 @@ Route::post('/add-to-panier', [userLogic::class, 'addProductPanier'])->name('add
 
 Route::get('/allProducts', [userLogic::class, 'getAllProducts'])->name('allProducts');
 
+Route::get('/nosproduits', function () {
+    return Inertia::render('NosProduits');
+})->name('nosproduits');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

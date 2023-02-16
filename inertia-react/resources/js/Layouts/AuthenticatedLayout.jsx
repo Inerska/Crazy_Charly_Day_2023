@@ -26,6 +26,9 @@ export default function Authenticated({auth, header, children}) {
                                 <NavLink href={route('dashboard')} active={route().current('dashboard')}>
                                     Catalogue
                                 </NavLink>
+                                <NavLink href={route('nosproduits')} active={route().current('nosproduits')}>
+                                    Nos produits
+                                </NavLink>
                                 {auth.user.admin !== 0 ?
                                     <NavLink href={route('AdminDashboard')} class="text-red-500"
                                              active={route().current('AdminDashboard')}>
@@ -39,7 +42,7 @@ export default function Authenticated({auth, header, children}) {
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ml-6">
-                            <div className="ml-3 relative">
+                            <div className="ml-3 relative mr-3">
                                 <Dropdown>
                                     <Dropdown.Trigger>
                                         <User
@@ -61,6 +64,9 @@ export default function Authenticated({auth, header, children}) {
                                     </Dropdown.Content>
                                 </Dropdown>
                             </div>
+                            <p>
+                                truc
+                            </p>
                         </div>
 
                         <div className="-mr-2 flex items-center sm:hidden">
@@ -111,6 +117,7 @@ export default function Authenticated({auth, header, children}) {
                             </ResponsiveNavLink>
                         </div>
                     </div>
+
                 </div>
             </nav>
 
