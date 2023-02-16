@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\forum;
+namespace App\Http\Controllers\main;
 
 use App\Http\Controllers\Controller;
-use App\Models\appSettings;
-use App\Models\Logs;
+use App\Models\commande;
+use App\Models\User;
 use DateTime;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -15,28 +15,13 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
-use TimeHunter\LaravelGoogleReCaptchaV3\Validations\GoogleReCaptchaV3ValidationRule;
+
 
 /**
  * Class made to handle all the logic associated with moderation actions
  */
 class adminLogic extends Controller
 {
-
-
-    /**
-     * Panel's admin-panel front page
-     *
-     * @return \Inertia\Response returns a view
-     */
-    public function mainAdminDashBoard()
-    {
-
-        return Inertia::render('admindashboard', [
-            //'userCount' => $userCount
-        ]);
-
-    }
 
     //tools
     /**
@@ -85,5 +70,19 @@ class adminLogic extends Controller
         return DB::table('users')->where('id', $id)->first();
     }
 
+    /**
+     * Panel's admin-panel front page
+     *
+     * @return \Inertia\Response returns a view
+     */
+    public function getAdminDashboard(){
+        $userCount = User::count();
+        $commandeCount = commande::count();
+
+        return Inertia::render('AdminDashboard', [
+            'userCount' => $userCount,
+            'commandeCount' => $commandeCount,
+        ]);
+    }
 
 }
