@@ -37,11 +37,11 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/panier', [userLogic::class, 'mainProducPage']);
+Route::get('/panier', function () {
+    return Inertia::render('Panier');
+});
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [userLogic::class, 'mainProducPage'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
