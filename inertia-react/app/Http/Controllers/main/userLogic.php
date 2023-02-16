@@ -23,6 +23,13 @@ class userLogic extends Controller
      */
     private $product_per_page = 5;
 
+    /**
+     * Handles request for the products page
+     *
+     * @param Request $request
+     * @param $id
+     * @return \Inertia\Response
+     */
     public function mainProducPage(Request $request, $id=1){
 
         $id2 = $id;
@@ -71,6 +78,24 @@ class userLogic extends Controller
 
     }
 
+    /**
+     * Handles for a product page
+     *
+     * @param $id
+     * @param Request $request
+     * @return \Inertia\Response
+     */
+    public function productPage($id, Request $request){
+        $product = produit::findOr($id, function () {
+            return back()->with('status', 'Product not found');
+        });
+       return Inertia::render('ProductPage',[
+           'product' => $product
+       ]);
+    }
 
+    public function addProductPanier(Request $request){
+
+    }
 
 }
