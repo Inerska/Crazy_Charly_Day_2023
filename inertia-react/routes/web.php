@@ -82,13 +82,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['AdminAuthenticate']], funct
 
 });
 
-Route::get('/testPanier',function (){
-    $user=User::find(1);
-    $res='';
-    foreach ($user->produits as $produit){
-        $res.='nom de produite: '.$produit->nom." ".'nombre de produit: '.$produit->pivot->nb_produit."\n";
-    }
-    return $res;
-});
+Route::get('/panier', 'App\Http\Controllers\Panier@affichier');
 
 require __DIR__.'/auth.php';
