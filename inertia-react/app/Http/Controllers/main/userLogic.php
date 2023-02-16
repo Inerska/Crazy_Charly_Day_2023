@@ -23,7 +23,7 @@ class userLogic extends Controller
      */
     private $product_per_page = 5;
 
-    public function mainProducPage($id=1, Request $request){
+    public function mainProducPage(Request $request, $id=1){
 
         $id2 = $id;
         $id = intval($id);

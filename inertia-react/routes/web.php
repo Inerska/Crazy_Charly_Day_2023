@@ -40,9 +40,7 @@ Route::get('/panier', function () {
     return Inertia::render('Panier');
 });
 
-Route::get('/dashboard/{id}',
-    [userLogic::class, 'mainProducPage'])
-    ->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard/{id?}', [userLogic::class, 'mainProducPage'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
