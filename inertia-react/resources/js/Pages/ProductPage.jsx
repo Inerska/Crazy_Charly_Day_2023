@@ -26,6 +26,8 @@ export default function ProductPage(props) {
                     <p>Payement sécurisé avec Stripe, Paypal ou Apple Pay</p>
                     <hr className="mt-2 mb-2"/>
 
+                    <input type="number" placeholder="Choisir une quantité" class="rounded borderless mr-5"/>
+
                     <a href={`/add-to-panier/${props.product.id}`}
                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg mt-6 font-2xl">
                         Add to cart
