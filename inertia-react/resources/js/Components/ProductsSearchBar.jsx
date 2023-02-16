@@ -24,7 +24,7 @@ export default function ProductsSearchBar() {
                     onChange={(e) => setQuery(e.target.value)}
                     placeholder="Rechercher un produit"
                 />
-                <Combobox.Options class="bg-red-500 flex-row">
+                <Combobox.Options class="flex-row">
                     {filteredProducts.map((product) => (
                         <Combobox.Option
                             key={product.id}
@@ -32,7 +32,15 @@ export default function ProductsSearchBar() {
                             as="a"
                             href={`/product/${product.id}`}
                         >
-                            {product.nom}
+                            <div class="flex items-center bg-white p-2">
+                                <img
+                                    src={`/products/${product.id}.jpg`}
+                                    alt={product.description}
+                                    height="50"
+                                    width="50"
+                                />
+                                <span class="text-1xl font-semibold bg-white">{product.nom}</span>
+                            </div>
                         </Combobox.Option>
                     ))}
                 </Combobox.Options>
