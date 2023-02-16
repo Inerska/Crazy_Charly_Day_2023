@@ -41,4 +41,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $table='users';
+    protected $primaryKey='id';
+    public $timestamps=false;
+
+    public function produits(){
+        return $this->belongsToMany('App\Models\produit','panier','user_id','produit_id')->withPivot(['nb_produit']);
+    }
 }

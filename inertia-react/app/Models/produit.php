@@ -18,4 +18,12 @@ class produit extends Model
         'longitude',
     ];
     use HasFactory;
+
+    protected $table='produits';
+    protected $primaryKey='id';
+    public $timestamps=false;
+
+    public function users(){
+        return $this->belongsToMany('App\Models\User','panier','produit_id','user_id')->withPivot(['nb_produit']);
+    }
 }

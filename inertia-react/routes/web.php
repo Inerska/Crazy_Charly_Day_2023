@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\forum\adminLogic;
+use App\Http\Controllers\main\adminLogic;
+use App\Http\Controllers\main\userLogic;
 use App\Http\Controllers\panier;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\usersController;
 use App\Http\Controllers\usersModActions;
-use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -41,9 +41,12 @@ Route::get('/panier', function () {
     return Inertia::render('Panier');
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard/{id?}', [userLogic::class, 'mainProducPage'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/product/{id}', [userLogic::class, 'productPage'])->name('productPage');
+Route::post('/add-to-panier', [userLogic::class, 'addProductPanier'])->name('addToPanier');
+
+Route::get('/allProducts', [userLogic::class, 'getAllProducts'])->name('allProducts');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -58,14 +61,8 @@ Route::get('/products', function () {
 Route::get('/panier/', [panier::class, 'getItemsFromPanier']);
 
 Route::group(['prefix' => 'admin', 'middleware' => ['AdminAuthenticate']], function(){
-
     //Dashboard Admin
-    Route::get('/', function () {
-        $userCount = User::count();
-        return Inertia::render('AdminDashboard', [
-            'userCount' => $userCount
-        ]);
-    })->name('AdminDashboard');
+    Route::get('/', [adminLogic::class, 'getAdminDashboard'])->name('AdminDashboard');
 
     //Page with all users | 1: all | 2:Search and pageid
     //rework to consider for new page system
@@ -85,4 +82,4 @@ Route::group(['prefix' => 'admin', 'middleware' => ['AdminAuthenticate']], funct
 
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
