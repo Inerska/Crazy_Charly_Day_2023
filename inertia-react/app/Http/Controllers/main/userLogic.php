@@ -63,7 +63,7 @@ class userLogic extends Controller
 
         }
 
-        return Inertia::render('adminusers', [
+        return Inertia::render('dashboard', [
             'produits' => $produits,
             'buttons' => $buttons,
             'pageid' => $pageid
