@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('panier', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('produit_id');
             $table->foreignId('user_id');
-            $table->integer("nb_produit");
+            $table->integer('nb_produit_tot_commande');
         });
     }
 

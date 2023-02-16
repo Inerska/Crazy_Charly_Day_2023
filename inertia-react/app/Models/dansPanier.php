@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class dansPanier extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'nb_produit_singulie'
+    ];
+
 }
