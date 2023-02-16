@@ -50,12 +50,7 @@ Route::get('/products', function () {
 Route::group(['prefix' => 'admin', 'middleware' => ['AdminAuthenticate']], function(){
 
     //Dashboard Admin
-    Route::get('/', function () {
-        $userCount = User::count();
-        return Inertia::render('AdminDashboard', [
-            'userCount' => $userCount
-        ]);
-    })->name('AdminDashboard');
+    Route::get('/', [adminLogic::class, 'getAdminDashboard'])->name('AdminDashboard');
 
     //Page with all users | 1: all | 2:Search and pageid
     //rework to consider for new page system
