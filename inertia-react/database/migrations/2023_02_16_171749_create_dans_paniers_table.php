@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('commandes', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('ville_id')->constrained();
-            $table->text('qr_code')->nullable(false);
+        Schema::create('dans_paniers', function (Blueprint $table) {
+            $table->foreignId('panier_id')->constrained('panier');
+            $table->foreignId('produit_id')->constrained();
+            $table->integer("nb_produit_singulier");
+            $table->primary(['panier_id', 'produit_id']);
         });
     }
 
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('commandes');
+        Schema::dropIfExists('dans_paniers');
     }
 };
