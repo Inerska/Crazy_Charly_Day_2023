@@ -1,6 +1,6 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import {Head, router} from '@inertiajs/react';
-import {Button, Card, Grid, Pagination, Row, Text} from "@nextui-org/react";
+import {Card, Grid, Pagination, Row, Text} from "@nextui-org/react";
 import {useState} from "react";
 
 export default function Dashboard(props) {
@@ -21,7 +21,7 @@ export default function Dashboard(props) {
                             return (<Grid key={key} xs={12} sm={6} md={4} lg={3} xl={2}>
                                 <Card isPressable isHoverable>
                                     <a href={`/product/${value.id}`}>
-                                        <Card.Body css={{p: 0}}>
+                                        <Card.Body css={{p: 0, width: 200}}>
                                             <Card.Image
                                                 src={`/products/${value.id}.jpg`}
                                                 width={140}
@@ -31,20 +31,22 @@ export default function Dashboard(props) {
                                             />
                                         </Card.Body>
                                         <Card.Footer css={{justifyItems: "flex-start"}}>
-                                            <Row wrap="wrap" justify="space-between" align="center">
-                                                <Text b>{value.nom}</Text>
-                                                <Text css={{
-                                                    color: "$accents7",
-                                                    fontWeight: "$semibold",
-                                                    fontSize: "$sm"
-                                                }}>
-                                                    {value.prix} €/{value.poids === 0 ? "kg" : "unité"}
-                                                </Text>
-                                                <Button auto size="small" type="success">
-                                                    <a href={`/add-to-panier/${value.id}`}>
-                                                        Add to cart
-                                                    </a>
-                                                </Button>
+                                            <Row wrap="wrap" justify="space-between" align="center"
+                                                 class="">
+                                                <div className="mb-6 w-full">
+                                                    <Text b>{value.nom}</Text>
+                                                    <Text css={{
+                                                        color: "$accents7",
+                                                        fontWeight: "$semibold",
+                                                        fontSize: "$sm"
+                                                    }}>
+                                                        {value.prix} €/{value.poids === 0 ? "kg" : "unité"}
+                                                    </Text>
+                                                </div>
+
+                                                <a href={`/add-to-panier/${value.id}`} className="bg-blue-500 hover:bg-blue-700 text-white p-2 rounded-lg font-semibold">
+                                                    Add to cart
+                                                </a>
                                             </Row>
                                         </Card.Footer>
                                     </a>
