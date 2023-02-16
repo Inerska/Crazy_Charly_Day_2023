@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/laravel-breeze-react" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/laravel-inertia-react" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/laravel-react-starterkit" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/laravel9-inertia-react-starter" vcs="Git" />
+  </component>
+</project>
