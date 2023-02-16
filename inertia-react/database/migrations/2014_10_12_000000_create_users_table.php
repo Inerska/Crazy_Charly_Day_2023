@@ -19,7 +19,7 @@ return new class extends Migration
 	        $table->boolean('admin')->default(false);
             $table->string('password');
             $table->rememberToken();
-            $table->text('image');
+            $table->text('image')->nullable();
             $table->timestamps();
         });
     }

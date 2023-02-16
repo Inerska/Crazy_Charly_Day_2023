@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\forum\adminLogic;
+use App\Http\Controllers\panier;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\usersController;
 use App\Http\Controllers\usersModActions;
@@ -53,6 +54,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/products', function () {
     return Inertia::render('Products');
 });
+
+Route::get('/panier/', [panier::class, 'getItemsFromPanier']);
 
 Route::group(['prefix' => 'admin', 'middleware' => ['AdminAuthenticate']], function(){
 
