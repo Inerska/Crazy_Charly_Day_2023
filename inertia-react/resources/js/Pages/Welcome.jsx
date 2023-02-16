@@ -119,7 +119,13 @@ export default function Welcome(props) {
                         </Card>
                     </Grid>
                 </Grid.Container>
+
+
+            <section>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab autem deleniti hic impedit quos? Corporis dolore, esse explicabo modi omnis sed tenetur? A accusantium dolor eveniet in labore molestias voluptas?
+            </section>
             </Container>
+
         </Layout>
     </>);
 }

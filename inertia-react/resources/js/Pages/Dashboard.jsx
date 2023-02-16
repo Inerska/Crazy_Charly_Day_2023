@@ -16,9 +16,9 @@ export default function Dashboard(props) {
         <div className="flex flex-col items-center">
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <Grid.Container gap={2} justify="center">
+                    <Grid.Container gap={2} justify="center" css={{width: "100%"}}>
                         {Object.entries(props.produits).map(([key, value]) => {
-                            return (<Grid key={key} xs={12} sm={6} md={4} lg={3} xl={2}>
+                            return (<Grid key={key} xs={12} sm={6} md={3} lg={3} xl={2}>
                                 <Card isPressable isHoverable>
                                     <a href={`/product/${value.id}`}>
                                         <Card.Body css={{p: 0, width: 200}}>
